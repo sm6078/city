@@ -10,6 +10,7 @@ public class Runner {
         Human humanOne = new Human("дАМир", "Шакиров", "Харисович", Sex.MALE);
         Human humanTwo = new Human("аНЯ", "Горелова", "Александровна", Sex.FEMALE);
         humanOne.makeChild("артур", "шакиров", "дамирович", Sex.MALE, humanTwo);
+        humanOne.makeChild("тимур", "шакиров", "дамирович", Sex.MALE, humanTwo);
         System.out.println(humanOne.getFullName());
     }
 }

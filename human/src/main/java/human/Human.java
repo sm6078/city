@@ -1,10 +1,15 @@
 package human;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
 
+@Getter
+@EqualsAndHashCode
 public class Human {
     private final String firstName;
     private final String secondName;
@@ -12,6 +17,7 @@ public class Human {
     private final Sex sex;
     private Human father;
     private Human mother;
+    @EqualsAndHashCode.Exclude
     private Set<Human> children = new HashSet<>();
 
     public Human(@NonNull String firstName, @NonNull String secondName,
@@ -24,29 +30,33 @@ public class Human {
 
     public Human makeChild(String firstName, String secondName, String middleName, Sex sex, Human humanTwo) {
         checkParentsSex(this, humanTwo);
-        Human newHuman = new Human(firstName, secondName, middleName, sex);
-        newHuman.addParents(this, humanTwo);
-        addChild(this, newHuman);
-        addChild(humanTwo, newHuman);
-        return newHuman;
+        Human child = new Human(firstName, secondName, middleName, sex);
+        child.makeFamilyTies(this, humanTwo);
+        return child;
+    }
+
+    private void makeFamilyTies(Human parentOne, Human parentTwo) {
+        this.addParents(parentOne, parentTwo);
+        addChild(parentOne, this);
+        addChild(parentTwo, this);
     }
 
     public String getFullName() {
-        return secondName + " " + firstName + " " + middleName;
+        return StringUtils.joinWith(" ", List.of(secondName, firstName, middleName).toArray());
     }
 
     private void addChild(Human humanParent, Human child) {
         humanParent.children.add(child);
     }
 
-    private void addParents(Human humanOne, Human humanTwo) {
-        checkParentsSex(humanOne, humanTwo);
-        if ((humanOne.sex == Sex.MALE)) {
-            father = humanOne;
-            mother = humanTwo;
+    private void addParents(Human parentOne, Human parentTwo) {
+        checkParentsSex(parentOne, parentTwo);
+        if ((parentOne.sex == Sex.MALE)) {
+            this.father = parentOne;
+            this.mother = parentTwo;
         } else {
-            father = humanTwo;
-            mother = humanOne;
+            this.father = parentTwo;
+            this.mother = parentOne;
         }
     }
 
