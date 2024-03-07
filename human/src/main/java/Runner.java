@@ -7,9 +7,9 @@ public class Runner {
     Можно править для тестирования других модулей
      */
     public static void main(String[] args) {
-        Human humanOne = new Human("дАМир", "Шакиров", "Харисович", Sex.Male);
-        Human humanTwo = new Human("аНЯ", "Горелова", "Александровна", Sex.Female);
-        humanOne.makeChild("артур", "шакиров", "дамирович", Sex.Male, humanTwo);
+        Human humanOne = new Human("дАМир", "Шакиров", "Харисович", Sex.MALE);
+        Human humanTwo = new Human("аНЯ", "Горелова", "Александровна", Sex.FEMALE);
+        humanOne.makeChild("артур", "шакиров", "дамирович", Sex.MALE, humanTwo);
         System.out.println(humanOne.getFullName());
     }
 }

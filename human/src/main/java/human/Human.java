@@ -41,7 +41,7 @@ public class Human {
 
     private void addParents(Human humanOne, Human humanTwo) {
         checkParentsSex(humanOne, humanTwo);
-        if ((humanOne.sex == Sex.Male)) {
+        if ((humanOne.sex == Sex.MALE)) {
             father = humanOne;
             mother = humanTwo;
         } else {
