@@ -8,12 +8,10 @@ import org.javaacademy.human.Human;
 import java.time.LocalDate;
 
 public class RunnerProm {
-	private static String civilRegistryName = "";
+	private static String civilRegistryName;
 
 	public static void main(String[] args) {
-		if (args.length != 0) {
-			civilRegistryName = args[0];
-		}
+		civilRegistryName = getCivilRegistryName(args);
 
 		Citizen citizenMale1 = new Citizen("Петряшин", "Александр", "Александрович", Sex.MALE);
 		Citizen citizenMale2 = new Citizen("Сидоров", "Владимир", "Иванович", Sex.MALE);
@@ -40,5 +38,12 @@ public class RunnerProm {
 		civilRegistry.divorceRegistration(citizenMale2, citizenFemale2, LocalDate.of(2023, 02, 20));
 
 		civilRegistry.getStatistics();
+	}
+
+	private static String getCivilRegistryName(String[] args) {
+		if (args.length != 0) {
+			return args[0];
+		}
+		return "";
 	}
 }
