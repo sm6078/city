@@ -1,8 +1,10 @@
-package human;
+package org.javaacademy.human;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -10,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 @Getter
 @EqualsAndHashCode
+@AllArgsConstructor
 public class Human {
     private final String firstName;
     private final String secondName;
@@ -20,8 +23,7 @@ public class Human {
     @EqualsAndHashCode.Exclude
     private Set<Human> children = new HashSet<>();
 
-    public Human(@NonNull String firstName, @NonNull String secondName,
-                 @NonNull String middleName, @NonNull Sex sex) {
+    public Human(@NonNull String firstName, @NonNull String secondName, @NonNull String middleName, @NonNull Sex sex) {
         this.firstName = capitalizeFirstLetterOtherToLower(firstName);
         this.secondName = capitalizeFirstLetterOtherToLower(secondName);
         this.middleName = capitalizeFirstLetterOtherToLower(middleName);
