@@ -1,8 +1,10 @@
-package human;
+package org.javaacademy.human;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -10,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 @Getter
 @EqualsAndHashCode
+@AllArgsConstructor
 public class Human {
     private final String firstName;
     private final String secondName;
@@ -28,7 +31,8 @@ public class Human {
         this.sex = sex;
     }
 
-    public Human makeChild(String firstName, String secondName, String middleName, Sex sex, Human humanTwo) {
+    public Human makeChild(String firstName, String secondName,
+                           String middleName, Sex sex, Human humanTwo) {
         checkParentsSex(this, humanTwo);
         Human child = new Human(firstName, secondName, middleName, sex);
         child.makeFamilyTies(this, humanTwo);

@@ -1,5 +1,7 @@
-import human.Human;
-import human.Sex;
+package org.javaacademy;
+
+import org.javaacademy.human.Human;
+import org.javaacademy.human.Sex;
 
 public class Runner {
     /*
