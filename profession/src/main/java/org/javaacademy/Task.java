@@ -2,17 +2,17 @@ package org.javaacademy;
 
 import java.time.Duration;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Setter
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Task {
     final String description;
     boolean isDone;
-    final Duration taskTime;
+    Duration taskTime;
 }
