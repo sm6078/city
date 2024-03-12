@@ -1,20 +1,26 @@
 package org.javaacademy.citizen;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import org.javaacademy.human.Human;
 import org.javaacademy.human.Sex;
 
+import static org.javaacademy.citizen.FamilyStatus.MARRIED;
+import static org.javaacademy.citizen.FamilyStatus.SINGLE;
+
 @Getter
 @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Citizen extends Human {
-	private FamilyStatus familyStatus;
+	FamilyStatus familyStatus;
 	@ToString.Exclude
-	private Citizen spouse;
+	Citizen spouse;
 
-		public Citizen(String firstName, String lastName, String patronymic, Sex gender) {
+	public Citizen(String firstName, String lastName, String patronymic, Sex gender) {
 		super(firstName, lastName, patronymic, gender);
-		familyStatus = FamilyStatus.NOT_MARRIED;
+		familyStatus = SINGLE;
 	}
 
 	public Citizen(Human human) {
@@ -25,12 +31,12 @@ public class Citizen extends Human {
 				human.getFather(),
 				human.getMother(),
 				human.getChildren());
-		familyStatus = FamilyStatus.NOT_MARRIED;
+		familyStatus = SINGLE;
 	}
 
 	public void changeFamilyStatus(Citizen spouse, FamilyStatus status) {
 		this.familyStatus = status;
-		if (status.equals(FamilyStatus.MARRIED)) {
+		if (status.equals(MARRIED)) {
 			this.spouse = spouse;
 		} else {
 			this.spouse = null;

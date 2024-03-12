@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +34,9 @@ public class CivilActionRecord implements Comparable<CivilActionRecord> {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		CivilActionRecord that = (CivilActionRecord) o;
-		return Objects.equals(date, that.date) && typeOfCivilAction == that.typeOfCivilAction && Objects.equals(listOfCitizens, that.listOfCitizens);
+		return Objects.equals(date, that.date) &&
+				typeOfCivilAction == that.typeOfCivilAction &&
+				Objects.equals(listOfCitizens, that.listOfCitizens);
 	}
 
 	@Override
