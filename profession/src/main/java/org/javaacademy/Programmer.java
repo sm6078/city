@@ -10,17 +10,14 @@ public class Programmer extends Employee {
     private static final BigDecimal MIN_EMPLOYEE_RATE = new BigDecimal(1500);
     private static final BigDecimal MAX_EMPLOYEE_RATE = new BigDecimal(2000);
 
-    public Programmer(@NonNull String firstName, @NonNull String secondName, @NonNull String middleName, @NonNull Sex sex) {
+    public Programmer(@NonNull String firstName, @NonNull String secondName,
+                      @NonNull String middleName, Sex sex) {
         super(firstName, secondName, middleName, sex);
     }
 
-
-
-
-
-
-    /* public Programmer(@NonNull Human human, BigDecimal employeeRate) {
-        super(human);
+    public Programmer(@NonNull String firstName, @NonNull String secondName,
+                      @NonNull String middleName, @NonNull Sex sex, BigDecimal employeeRate) {
+        super(firstName, secondName, middleName, sex);
         if (employeeRate.compareTo(MIN_EMPLOYEE_RATE) <= 0
                 || employeeRate.compareTo(MAX_EMPLOYEE_RATE) >= 0) {
             throw new RuntimeException("Ошибка. "
@@ -29,7 +26,7 @@ public class Programmer extends Employee {
         } else {
             super.setEmployeeRate(employeeRate);
         }
-    }*/
+    }
 
     public void doTask(Task task) {
         task.setDone(true);

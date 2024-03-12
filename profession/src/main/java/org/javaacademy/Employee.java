@@ -12,7 +12,8 @@ public abstract class Employee extends Human {
     @Setter
     private BigDecimal employeeRate;
 
-    public Employee(@NonNull String firstName, @NonNull String secondName, @NonNull String middleName, @NonNull Sex sex) {
+    public Employee(@NonNull String firstName, @NonNull String secondName,
+                    @NonNull String middleName, @NonNull Sex sex) {
         super(firstName, secondName, middleName, sex);
     }
 }
