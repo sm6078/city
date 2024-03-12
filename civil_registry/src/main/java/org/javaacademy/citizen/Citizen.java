@@ -2,6 +2,7 @@ package org.javaacademy.citizen;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.human.Human;
@@ -18,7 +19,10 @@ public class Citizen extends Human {
 	@ToString.Exclude
 	Citizen spouse;
 
-	public Citizen(String firstName, String lastName, String patronymic, Sex gender) {
+	public Citizen(@NonNull String firstName,
+	               @NonNull String lastName,
+	               @NonNull String patronymic,
+	               @NonNull Sex gender) {
 		super(firstName, lastName, patronymic, gender);
 		familyStatus = SINGLE;
 	}
