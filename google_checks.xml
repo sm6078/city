@@ -65,7 +65,10 @@
 
   <!-- Checks for whitespace                               -->
   <!-- See http://checkstyle.sourceforge.net/config_whitespace.html -->
-  <module name="FileTabCharacter"/>
+  <!--  <module name="FileTabCharacter"/>-->
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
 
   <!-- Miscellaneous other checks.                   -->
   <!-- See http://checkstyle.sourceforge.net/config_misc.html -->
@@ -82,6 +85,12 @@
   <!--   <property name="headerFile" value="${checkstyle.header.file}"/> -->
   <!--   <property name="fileExtensions" value="java"/> -->
   <!-- </module> -->
+
+  <module name="LineLength">
+    <property name="fileExtensions" value="java"/>
+    <property name="max" value="100"/>
+    <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+  </module>
 
   <module name="TreeWalker">
 
@@ -116,7 +125,7 @@
 
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sourceforge.net/config_sizes.html -->
-    <module name="LineLength"/>
+    <!--    <module name="LineLength"/>-->
     <module name="MethodLength"/>
     <module name="ParameterNumber"/>
 
