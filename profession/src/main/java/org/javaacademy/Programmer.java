@@ -1,8 +1,8 @@
 package org.javaacademy;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import lombok.NonNull;
-import org.javaacademy.human.Human;
 import org.javaacademy.human.Sex;
 
 public class Programmer extends Employee {
@@ -15,9 +15,8 @@ public class Programmer extends Employee {
         super(firstName, secondName, middleName, sex);
     }
 
-    public Programmer(@NonNull String firstName, @NonNull String secondName,
-                      @NonNull String middleName, @NonNull Sex sex, BigDecimal employeeRate) {
-        super(firstName, secondName, middleName, sex);
+    @Override
+    public void setEmployeeRate(BigDecimal employeeRate) {
         if (employeeRate.compareTo(MIN_EMPLOYEE_RATE) <= 0
                 || employeeRate.compareTo(MAX_EMPLOYEE_RATE) >= 0) {
             throw new RuntimeException("Ошибка. "
@@ -28,7 +27,10 @@ public class Programmer extends Employee {
         }
     }
 
-    public void doTask(Task task) {
+    public void doTask(Task task, Duration timeTask) {
         task.setDone(true);
+        task.setTaskTime(timeTask);
+        System.out.printf("%s - выполнена, время выполнения: %s час/а/ов\n",
+                task.getDescription(), task.getTaskTime().toHours());
     }
 }
