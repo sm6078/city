@@ -93,7 +93,9 @@ public class CivilRegistry {
 						date + " " + getCountOfTypeRegistration(typeOfCivilAction)));
 	}
 
-	private CivilActionRecord generateCivilActionRecord(LocalDate date, TypeOfCivilAction typeOfCivilAction, List<Citizen> listOfCitizens) {
+	private CivilActionRecord generateCivilActionRecord(LocalDate date,
+								TypeOfCivilAction typeOfCivilAction,
+								List<Citizen> listOfCitizens) {
 		return new CivilActionRecord(date,
 				typeOfCivilAction,
 				listOfCitizens);

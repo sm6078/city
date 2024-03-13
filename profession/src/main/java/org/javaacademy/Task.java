@@ -16,6 +16,6 @@ public class Task {
     String description;
     @Setter
     boolean isDone;
-    @Setter
+    @NonNull
     Duration taskTime;
 }
