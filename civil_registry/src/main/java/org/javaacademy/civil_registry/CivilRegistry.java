@@ -22,7 +22,7 @@ import static org.javaacademy.civil_registry.TypeOfCivilAction.DIVORCE_REGISTRAT
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CivilRegistry {
 	String name;
-	@Getter // Добавлен для создания юнит-теста
+    @Getter
 	TreeSet<CivilActionRecord> listOfCivilActionRecord = new TreeSet<>();
 
 	/**
@@ -94,10 +94,9 @@ public class CivilRegistry {
 				(date, typeOfCivilAction) -> System.out.println(
 						date + " " + getCountOfTypeRegistration(typeOfCivilAction)));
 	}
-
-	/**
-	 * Public - для юнит-тестов
-	 */
+    /**
+     * Public - для юнит-тестов
+     */
 	public CivilActionRecord generateCivilActionRecord(LocalDate date, TypeOfCivilAction typeOfCivilAction, List<Citizen> listOfCitizens) {
 		return new CivilActionRecord(date,
 				typeOfCivilAction,

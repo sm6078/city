@@ -10,13 +10,15 @@ public class CivilRegistryUtil {
 		if (male.getSex() == female.getSex()) {
 			throw new RuntimeException("Однополые браки запрещены.");
 		}
-		if (male.getFamilyStatus() == FamilyStatus.MARRIED || female.getFamilyStatus() == FamilyStatus.MARRIED) {
+		if (male.getFamilyStatus() == FamilyStatus.MARRIED
+				|| female.getFamilyStatus() == FamilyStatus.MARRIED) {
 			throw new RuntimeException("Один из партнеров находится в отношениях.");
 		}
 	}
 
 	void checkDivorceRegistration(Citizen male, Citizen female) {
-		if (!male.getSpouse().equals(female) || !female.getSpouse().equals(male)) {
+		if (!male.getSpouse().equals(female)
+				|| !female.getSpouse().equals(male)) {
 			throw new RuntimeException("Партнеры не находятся в отношениях");
 		}
 	}

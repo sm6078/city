@@ -7,7 +7,6 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.human.Human;
 import org.javaacademy.human.Sex;
-
 import static org.javaacademy.citizen.FamilyStatus.MARRIED;
 import static org.javaacademy.citizen.FamilyStatus.SINGLE;
 

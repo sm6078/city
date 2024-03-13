@@ -23,14 +23,21 @@ public class Human {
     @EqualsAndHashCode.Exclude
     private Set<Human> children = new HashSet<>();
 
-    public Human(@NonNull String firstName, @NonNull String secondName, @NonNull String middleName, @NonNull Sex sex) {
+    public Human(@NonNull String firstName,
+                 @NonNull String secondName,
+                 @NonNull String middleName,
+                 @NonNull Sex sex) {
         this.firstName = capitalizeFirstLetterOtherToLower(firstName);
         this.secondName = capitalizeFirstLetterOtherToLower(secondName);
         this.middleName = capitalizeFirstLetterOtherToLower(middleName);
         this.sex = sex;
     }
 
-    public Human makeChild(String firstName, String secondName, String middleName, Sex sex, Human humanTwo) {
+    public Human makeChild(String firstName,
+                           String secondName,
+                           String middleName,
+                           Sex sex,
+                           Human humanTwo) {
         checkParentsSex(this, humanTwo);
         Human child = new Human(firstName, secondName, middleName, sex);
         child.makeFamilyTies(this, humanTwo);
