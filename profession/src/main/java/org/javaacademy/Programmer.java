@@ -6,7 +6,6 @@ import lombok.NonNull;
 import org.javaacademy.human.Sex;
 
 public class Programmer extends Employee {
-
     private static final BigDecimal MIN_EMPLOYEE_RATE = new BigDecimal(1500);
     private static final BigDecimal MAX_EMPLOYEE_RATE = new BigDecimal(2000);
 

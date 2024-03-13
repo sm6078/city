@@ -1,8 +1,11 @@
 package org.javaacademy;
 
 import java.time.Duration;
-
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Getter
@@ -14,7 +17,5 @@ public class Task {
     @Setter
     boolean isDone;
     @Setter
-
-
     Duration taskTime;
 }
