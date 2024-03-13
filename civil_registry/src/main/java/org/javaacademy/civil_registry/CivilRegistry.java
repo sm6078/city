@@ -97,7 +97,9 @@ public class CivilRegistry {
     /**
      * Public - для юнит-тестов
      */
-	public CivilActionRecord generateCivilActionRecord(LocalDate date, TypeOfCivilAction typeOfCivilAction, List<Citizen> listOfCitizens) {
+	public CivilActionRecord generateCivilActionRecord(LocalDate date,
+													   TypeOfCivilAction typeOfCivilAction,
+													   List<Citizen> listOfCitizens) {
 		return new CivilActionRecord(date,
 				typeOfCivilAction,
 				listOfCitizens);
