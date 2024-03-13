@@ -1,6 +1,7 @@
 package org.javaacademy.civil_registry;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.FamilyStatus;
@@ -21,6 +22,7 @@ import static org.javaacademy.civil_registry.TypeOfCivilAction.DIVORCE_REGISTRAT
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CivilRegistry {
 	String name;
+	@Getter // Добавлен для создания юнит-теста
 	TreeSet<CivilActionRecord> listOfCivilActionRecord = new TreeSet<>();
 
 	/**
@@ -93,7 +95,10 @@ public class CivilRegistry {
 						date + " " + getCountOfTypeRegistration(typeOfCivilAction)));
 	}
 
-	private CivilActionRecord generateCivilActionRecord(LocalDate date, TypeOfCivilAction typeOfCivilAction, List<Citizen> listOfCitizens) {
+	/**
+	 * Public - для юнит-тестов
+	 */
+	public CivilActionRecord generateCivilActionRecord(LocalDate date, TypeOfCivilAction typeOfCivilAction, List<Citizen> listOfCitizens) {
 		return new CivilActionRecord(date,
 				typeOfCivilAction,
 				listOfCitizens);
