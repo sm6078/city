@@ -31,12 +31,16 @@ public class CivilActionRecord implements Comparable<CivilActionRecord> {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 		CivilActionRecord that = (CivilActionRecord) o;
-		return Objects.equals(date, that.date) &&
-				typeOfCivilAction == that.typeOfCivilAction &&
-				Objects.equals(listOfCitizens, that.listOfCitizens);
+		return Objects.equals(date, that.date)
+				&& typeOfCivilAction == that.typeOfCivilAction
+				&& Objects.equals(listOfCitizens, that.listOfCitizens);
 	}
 
 	@Override
