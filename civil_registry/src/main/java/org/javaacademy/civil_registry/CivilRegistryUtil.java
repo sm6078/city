@@ -1,7 +1,5 @@
 package org.javaacademy.civil_registry;
 
-import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 import lombok.experimental.UtilityClass;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.FamilyStatus;
