@@ -19,7 +19,7 @@ public class Citizen extends Human {
 	Citizen spouse;
 
 	public Citizen(@NonNull String firstName,
-				   @NonNull String lastName,
+		       @NonNull String lastName,
 	               @NonNull String patronymic,
 	               @NonNull Sex gender) {
 		super(firstName, lastName, patronymic, gender);
