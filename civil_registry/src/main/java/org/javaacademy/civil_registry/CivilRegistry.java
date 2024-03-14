@@ -1,6 +1,7 @@
 package org.javaacademy.civil_registry;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.FamilyStatus;
@@ -21,6 +22,7 @@ import static org.javaacademy.civil_registry.TypeOfCivilAction.DIVORCE_REGISTRAT
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CivilRegistry {
 	String name;
+        @Getter
 	TreeSet<CivilActionRecord> listOfCivilActionRecord = new TreeSet<>();
 
 	/**
@@ -40,7 +42,7 @@ public class CivilRegistry {
 	 */
 	public void birthRegistration(Human child, Citizen father, Citizen mother, LocalDate date) {
 		CivilActionRecord civilActionRecord = generateCivilActionRecord(date,
-				BIRTH_REGISTRATION,
+				BIRTH_REGISTRATION, 
 				List.of(new Citizen(child), father, mother));
 		listOfCivilActionRecord.add(civilActionRecord);
 	}
@@ -83,8 +85,8 @@ public class CivilRegistry {
 				.collect(Collectors.groupingBy(
 						CivilActionRecord::getDate,
 						Collectors.groupingBy(
-								CivilActionRecord::getTypeOfCivilAction,
-								Collectors.summingInt(e -> 1))));
+							CivilActionRecord::getTypeOfCivilAction,
+							Collectors.summingInt(e -> 1))));
 		Map<LocalDate, Map<TypeOfCivilAction, Integer>> sortedRecordsByDate = new TreeMap<>(recordsByDate);
 
 		System.out.printf("Статистика по ЗАГС: %s\n", name);
@@ -92,16 +94,14 @@ public class CivilRegistry {
 				(date, typeOfCivilAction) -> System.out.println(
 						date + " " + getCountOfTypeRegistration(typeOfCivilAction)));
 	}
-
-	private CivilActionRecord generateCivilActionRecord(LocalDate date,
-								TypeOfCivilAction typeOfCivilAction,
-								List<Citizen> listOfCitizens) {
-		return new CivilActionRecord(date,
-				typeOfCivilAction,
-				listOfCitizens);
+    	
+	public CivilActionRecord generateCivilActionRecord(LocalDate date, // Public - для юнит-тестов
+							   TypeOfCivilAction typeOfCivilAction,
+							   List<Citizen> listOfCitizens) {
+		return new CivilActionRecord(date, typeOfCivilAction, listOfCitizens);
 	}
 
-	private String getCountOfTypeRegistration(Map<TypeOfCivilAction, Integer> countOfTypeRegistration) {
+	public String getCountOfTypeRegistration(Map<TypeOfCivilAction, Integer> countOfTypeRegistration) { //Public - для юнит-тестов
 		StringJoiner stringJoiner = new StringJoiner(", ");
 		countOfTypeRegistration.forEach((type, count) -> stringJoiner.add(generateString(type, count)));
 		return stringJoiner.toString();
