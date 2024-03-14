@@ -22,7 +22,7 @@ import static org.javaacademy.civil_registry.TypeOfCivilAction.DIVORCE_REGISTRAT
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CivilRegistry {
 	String name;
-    @Getter
+        @Getter
 	TreeSet<CivilActionRecord> listOfCivilActionRecord = new TreeSet<>();
 
 	/**
