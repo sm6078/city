@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CivilRegistryTest {
     private static final CivilRegistry civilRegistry = new CivilRegistry("Test_Zags");
-    Citizen male = new Citizen("Мужчина", "Петров", "Петрович", Sex.MALE);
-    Citizen female = new Citizen("Женщина", "Петрова", "Петровна", Sex.FEMALE);
     LocalDate date = LocalDate.of(2023, 1, 1);
     Human child = new Human("Ребенок", "Иванов", "Иванович", Sex.MALE);
 
     @Test
     @DisplayName("Проверка успешной регистрации рождения ребенка")
     public void birthRegistrationSuccess() {
+        Citizen male = new Citizen("Мужчина", "Петров", "Петрович", Sex.MALE);
+        Citizen female = new Citizen("Женщина", "Петрова", "Петровна", Sex.FEMALE);
         civilRegistry.birthRegistration(child, male, female, date);
         CivilActionRecord civilActionRecord = civilRegistry.generateCivilActionRecord(date, TypeOfCivilAction.BIRTH_REGISTRATION,
                 List.of(new Citizen(child), male, female));
@@ -31,6 +31,8 @@ public class CivilRegistryTest {
     @Test
     @DisplayName("Проверка успешной регистрации свадьбы")
     public void weddingRegistrationSuccess() {
+        Citizen male = new Citizen("Мужчина", "Петров", "Петрович", Sex.MALE);
+        Citizen female = new Citizen("Женщина", "Петрова", "Петровна", Sex.FEMALE);
         civilRegistry.weddingRegistration(male, female, date);
         CivilActionRecord civilActionRecord = civilRegistry.generateCivilActionRecord(date, TypeOfCivilAction.WEDDING_REGISTRATION,
                 List.of(male, female));
@@ -41,6 +43,8 @@ public class CivilRegistryTest {
     @Test
     @DisplayName("Проверка успешной регистрации развода")
     public void divorceRegistrationSuccess() {
+        Citizen male = new Citizen("Мужчина", "Петров", "Петрович", Sex.MALE);
+        Citizen female = new Citizen("Женщина", "Петрова", "Петровна", Sex.FEMALE);
         male.changeFamilyStatus(female, FamilyStatus.MARRIED);
         female.changeFamilyStatus(male, FamilyStatus.MARRIED);
         civilRegistry.divorceRegistration(male, female, date);
@@ -48,13 +52,14 @@ public class CivilRegistryTest {
                 List.of(male, female));
 
         assertTrue(civilRegistry.getListOfCivilActionRecord().contains(civilActionRecord));
-        male.changeFamilyStatus(female, FamilyStatus.SINGLE);
-        female.changeFamilyStatus(male, FamilyStatus.SINGLE);
     }
 
     @Test
     @DisplayName("Проверка на ошибку при однополом браке")
     public void weddingRegistrationSomeSexException() {
+        Citizen male = new Citizen("Мужчина", "Петров", "Петрович", Sex.MALE);
+        Citizen female = new Citizen("Женщина", "Петрова", "Петровна", Sex.FEMALE);
+
         assertThrows(RuntimeException.class, () -> civilRegistry.weddingRegistration(male, male, date));
         assertThrows(RuntimeException.class, () -> civilRegistry.weddingRegistration(female, female, date));
 
@@ -63,19 +68,26 @@ public class CivilRegistryTest {
     @Test
     @DisplayName("Проверку на ошибку, если один из партнеров находится в отношениях")
     public void weddingRegistrationMarriesException() {
+        Citizen male = new Citizen("Мужчина", "Петров", "Петрович", Sex.MALE);
+        Citizen female = new Citizen("Женщина", "Петрова", "Петровна", Sex.FEMALE);
         male.changeFamilyStatus(female, FamilyStatus.MARRIED);
+
         assertThrows(RuntimeException.class, () -> civilRegistry.weddingRegistration(male, female, date));
+
         male.changeFamilyStatus(female, FamilyStatus.SINGLE);
         female.changeFamilyStatus(male, FamilyStatus.MARRIED);
+
         assertThrows(RuntimeException.class, () -> civilRegistry.weddingRegistration(male, female, date));
-        female.changeFamilyStatus(male, FamilyStatus.SINGLE);
     }
 
     @Test
     @DisplayName("Проверку на ошибку, если при разводе партнеры не женаты")
     public void divorceRegistrationException() {
+        Citizen male = new Citizen("Мужчина", "Петров", "Петрович", Sex.MALE);
+        Citizen female = new Citizen("Женщина", "Петрова", "Петровна", Sex.FEMALE);
         male.changeFamilyStatus(female, FamilyStatus.SINGLE);
         female.changeFamilyStatus(male, FamilyStatus.MARRIED);
+
         assertThrows(RuntimeException.class, () -> civilRegistry.divorceRegistration(male, female, date));
     }
 

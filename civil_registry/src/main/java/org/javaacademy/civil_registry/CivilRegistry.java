@@ -41,8 +41,7 @@ public class CivilRegistry {
 	 * @ date
 	 */
 	public void birthRegistration(Human child, Citizen father, Citizen mother, LocalDate date) {
-		CivilActionRecord civilActionRecord = generateCivilActionRecord(date,
-				BIRTH_REGISTRATION, 
+		CivilActionRecord civilActionRecord = generateCivilActionRecord(date, BIRTH_REGISTRATION,
 				List.of(new Citizen(child), father, mother));
 		listOfCivilActionRecord.add(civilActionRecord);
 	}
@@ -94,14 +93,16 @@ public class CivilRegistry {
 				(date, typeOfCivilAction) -> System.out.println(
 						date + " " + getCountOfTypeRegistration(typeOfCivilAction)));
 	}
-    	
-	public CivilActionRecord generateCivilActionRecord(LocalDate date, // Public - для юнит-тестов
-							   TypeOfCivilAction typeOfCivilAction,
-							   List<Citizen> listOfCitizens) {
+
+	// Public - для юнит-тестов
+	public CivilActionRecord generateCivilActionRecord(LocalDate date,
+													   TypeOfCivilAction typeOfCivilAction,
+													   List<Citizen> listOfCitizens) {
 		return new CivilActionRecord(date, typeOfCivilAction, listOfCitizens);
 	}
 
-	public String getCountOfTypeRegistration(Map<TypeOfCivilAction, Integer> countOfTypeRegistration) { //Public - для юнит-тестов
+	//Public - для юнит-тестов
+	public String getCountOfTypeRegistration(Map<TypeOfCivilAction, Integer> countOfTypeRegistration) {
 		StringJoiner stringJoiner = new StringJoiner(", ");
 		countOfTypeRegistration.forEach((type, count) -> stringJoiner.add(generateString(type, count)));
 		return stringJoiner.toString();
