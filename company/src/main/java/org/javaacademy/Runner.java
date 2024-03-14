@@ -19,7 +19,6 @@ import static org.javaacademy.human.Sex.MALE;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NonNull
 public class Runner {
-
 	public static void main(String[] args) {
 		String companyName = getCompanyName(args);
 		BigDecimal wageRateProgrammer = getWageRateProgrammer(args);
