@@ -7,6 +7,9 @@ import org.javaacademy.human.Sex;
 import org.junit.jupiter.api.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CivilRegistryTest {
@@ -75,12 +78,23 @@ public class CivilRegistryTest {
         male.changeFamilyStatus(female, FamilyStatus.SINGLE);
         female.changeFamilyStatus(male, FamilyStatus.MARRIED);
         assertThrows(RuntimeException.class, () -> civilRegistry.divorceRegistration(male, female, date));
-
     }
 
     @Test
     @DisplayName("Проверка отсутствия ошибок при выводе статистики в консоль")
     public void getStatisticsDoesNotThrow() {
         assertDoesNotThrow(civilRegistry::getStatistics);
+    }
+
+    @Test
+    public void getCountOfTypeRegistrationSuccess() {
+        Map<TypeOfCivilAction, Integer> countOfTypeRegistration = new TreeMap<>();
+        countOfTypeRegistration.put(TypeOfCivilAction.BIRTH_REGISTRATION, 3);
+        countOfTypeRegistration.put(TypeOfCivilAction.WEDDING_REGISTRATION, 2);
+        countOfTypeRegistration.put(TypeOfCivilAction.DIVORCE_REGISTRATION, 1);
+
+        String result = civilRegistry.getCountOfTypeRegistration(countOfTypeRegistration);
+
+        assertEquals("Количество рождений - 3, Количество свадеб - 2, Количество разводов - 1", result);
     }
 }

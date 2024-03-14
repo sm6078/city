@@ -105,7 +105,11 @@ public class CivilRegistry {
 				listOfCitizens);
 	}
 
-	private String getCountOfTypeRegistration(Map<TypeOfCivilAction, Integer> countOfTypeRegistration) {
+	/**
+	 *
+	 * Public - для юнит-тестов
+	 */
+	public String getCountOfTypeRegistration(Map<TypeOfCivilAction, Integer> countOfTypeRegistration) {
 		StringJoiner stringJoiner = new StringJoiner(", ");
 		countOfTypeRegistration.forEach((type, count) -> stringJoiner.add(generateString(type, count)));
 		return stringJoiner.toString();
